@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Lachhab Hamza — Portfolio</title>
+  <meta name="description" content="Portfolio de Lachhab Hamza : Big Data & IA, projets, expérience, leadership, contact."/>
+  <style>
+    :root{
+      --bg:#070912;
+      --bg2:#0b1326;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.04);
+      --line: rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a7b2d8;
+
+      --violet:#7c3aed;
+      --cyan:#22d3ee;
+      --amber:#f59e0b;
+
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 12% 10%, rgba(124,58,237,.28), transparent 60%),
+        radial-gradient(900px 520px at 88% 0%, rgba(34,211,238,.18), transparent 55%),
+        radial-gradient(900px 700px at 55% 95%, rgba(245,158,11,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1150px;margin:0 auto;padding:0 20px}
+
+    /* ===== NAV ===== */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,9,18,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      font-weight:950;letter-spacing:.2px;
+    }
+    .mark{
+      width:40px;height:40px;border-radius:16px;
+      background: linear-gradient(135deg, rgba(124,58,237,1), rgba(34,211,238,1));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.14), 0 0 0 12px rgba(34,211,238,.09);
+      display:grid;place-items:center;
+      font-weight:1000;
+    }
+    .brand small{display:block;color:var(--muted);font-weight:900;line-height:1}
+    .brand b{display:block;font-size:16px;line-height:1.15}
+    .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .links a{
+      color:var(--muted);
+      padding:8px 10px;border-radius:14px;
+      border:1px solid transparent;
+      transition:.2s ease;
+      font-weight:850;
+      font-size:14px;
+      position:relative;
+    }
+    .links a:hover{
+      color:var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+      transform: translateY(-1px);
+    }
+    .links a.active{
+      color:var(--text);
+      border-color: rgba(34,211,238,.28);
+      background: rgba(34,211,238,.10);
+    }
+
+    /* ===== PREMIUM CARD (GLASS) ===== */
+    .card{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      transform: translateZ(0);
+    }
+    .card::before{
+      content:"";
+      position:absolute;inset:-2px;
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(34,211,238,.10), rgba(245,158,11,.10));
+      opacity:.35;
+      pointer-events:none;
+      filter: blur(18px);
+    }
+    .card > *{position:relative}
+
+    /* ===== HERO ===== */
+    .hero{
+      padding:44px 0 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr;padding-top:28px;}
+    }
+    .hero-left{padding:28px}
+    .chips{
+      display:flex;gap:10px;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight:850;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .chip strong{color:var(--text)}
+    h1{
+      margin:6px 0 10px;
+      font-size:46px;
+      line-height:1.03;
+      letter-spacing:-.9px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.75;
+      max-width: 75ch;
+    }
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight:950;
+      font-size:14px;
+      transition: .2s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn.primary{
+      border: 1px solid rgba(34,211,238,.28);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,211,238,.70));
+      box-shadow: 0 18px 55px rgba(124,58,237,.18);
+    }
+    .btn.ghost{
+      border:1px solid rgba(245,158,11,.25);
+      background: rgba(245,158,11,.08);
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0)}
+
+    .hero-right{padding:18px;display:flex;flex-direction:column;gap:12px}
+    .mini{
+      padding:16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    .mini h3{margin:0 0 8px;font-size:14px;color:var(--muted);font-weight:950}
+    .mini p{margin:0;font-size:14px;line-height:1.55;color:rgba(238,242,255,.92)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+
+    /* ===== SECTIONS ===== */
+    section{padding:18px 0}
+    .section-title{
+      display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+      margin:8px 0 12px
+    }
+    .section-title h2{margin:0;font-size:22px;letter-spacing:-.2px}
+    .section-title span{color:var(--muted);font-size:13px;font-weight:850}
+
+    .grid{display:grid;grid-template-columns: 1fr 1fr;gap:16px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr;} }
+
+    .item{padding:18px}
+    .item h3{margin:0;font-size:16px}
+    .meta{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.55}
+    .item ul{margin:12px 0 0;padding-left:18px}
+    .item li{margin:6px 0;line-height:1.6;color:rgba(238,242,255,.92)}
+
+    .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{
+      font-size:12px;font-weight:950;
+      border-radius:999px;
+      padding:6px 10px;
+      white-space:nowrap;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    .tag.p{border-color: rgba(124,58,237,.35); background: rgba(124,58,237,.16);}
+    .tag.c{border-color: rgba(34,211,238,.35); background: rgba(34,211,238,.14);}
+    .tag.a{border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.14);}
+
+    /* ===== TIMELINE ===== */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .t-item{
+      display:grid;grid-template-columns: 140px 1fr;
+      gap:12px;
+      padding:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius:18px;
+    }
+    @media(max-width:680px){ .t-item{grid-template-columns:1fr} }
+    .t-date{
+      color:var(--muted);
+      font-weight:950;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .skills .pill{
+      padding:10px 12px;border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: rgba(238,242,255,.95);
+      font-weight:900;font-size:13px;
+    }
+
+    /* ===== LANGUAGE BARS (animated) ===== */
+    .lang{
+      margin-top:12px;
+      display:flex;flex-direction:column;gap:12px;
+    }
+    .lang .row{
+      display:flex;align-items:center;gap:12px;
+    }
+    .lang .label{width:210px;color:rgba(238,242,255,.92);font-weight:900;font-size:13px}
+    @media(max-width:520px){ .lang .label{width:155px} }
+    .bar{
+      flex:1;
+      height:10px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(124,58,237,1), rgba(34,211,238,1));
+      border-radius:999px;
+      transition: width 1100ms cubic-bezier(.2,.9,.2,1);
+    }
+    .lvl{
+      width:60px;
+      text-align:right;
+      color:var(--muted);
+      font-weight:950;
+      font-size:12px;
+    }
+
+    /* ===== PROJECT CARDS ===== */
+    .project{
+      padding:18px;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .project .top{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px
+    }
+    .project .top h3{margin:0;font-size:16px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      padding:26px 0 40px;
+      color: var(--muted);
+      font-size:13px;
+      border-top:1px solid var(--line);
+      margin-top: 18px;
+      text-align:center;
+    }
+
+    /* ===== REDUCE MOTION ===== */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .fill{transition:none}
+      .btn:hover{transform:none}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="mark">H</div>
+      <div>
+        <small>Portfolio • Big Data & IA</small>
+        <b>Lachhab Hamza</b>
+      </div>
+    </div>
+
+    <nav class="links" id="navLinks">
+      <a href="#profil">Profil</a>
+      <a href="#projets">Projets</a>
+      <a href="#experience">Expérience</a>
+      <a href="#formation">Formation</a>
+      <a href="#competences">Compétences</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="card hero-left reveal">
+      <div class="chips">
+        <span class="chip">🎓 <strong>UIR</strong> • 3ᵉ année Ingénierie Info</span>
+        <span class="chip">🧠 <strong>Big Data & IA</strong></span>
+        <span class="chip">📍 Casablanca / Rabat</span>
+      </div>
+
+      <h1>Ingénieur en devenir<br/>Data • Dev • IA</h1>
+
+      <p class="subtitle">
+        Je m’appelle <strong>Lachhab Hamza</strong> (19 ans). Je combine une base solide en
+        <strong>Python, Java, C</strong>, développement web et <strong>MySQL</strong> avec une expérience terrain
+        en entrepreneuriat (Smart & Clear Pressing) et leadership universitaire.
+        Mon objectif : intégrer un environnement exigeant en <strong>stage Big Data / Développement / IA</strong>.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="#projets">Voir mes projets</a>
+        <a class="btn" href="mailto:hlachhab230@gmail.com?subject=Contact%20Portfolio%20Hamza">Me contacter</a>
+        <a class="btn ghost" href="https://www.smartclearpressing.com" target="_blank" rel="noreferrer">Smart & Clear</a>
+      </div>
+
+      <div class="tagrow" style="margin-top:14px">
+        <span class="tag p">Discipline (lycée militaire)</span>
+        <span class="tag c">Esprit analytique</span>
+        <span class="tag a">Orienté résultats</span>
+        <span class="tag">Autonomie</span>
+        <span class="tag">Leadership</span>
+      </div>
+    </div>
+
+    <aside class="card hero-right reveal">
+      <div class="mini">
+        <h3>Contact</h3>
+        <p>
+          📞 <span class="mono">0684063402</span><br/>
+          ✉️ <span class="mono">hlachhab230@gmail.com</span><br/>
+          🌐 <a class="mono" href="https://www.smartclearpressing.com" target="_blank" rel="noreferrer">smartclearpressing.com</a>
+        </p>
+      </div>
+
+      <div class="mini">
+        <h3>Réseaux</h3>
+        <p>
+          LinkedIn : <a class="mono" href="https://www.linkedin.com/in/hamza-lachhab-8a502038b" target="_blank" rel="noreferrer">/hamza-lachhab</a><br/>
+          Instagram : <a class="mono" href="https://www.instagram.com/h4mz4_z/" target="_blank" rel="noreferrer">@h4mz4_z</a><br/>
+          GitHub : <a class="mono" href="https://github.com/hlachhab230-ai" target="_blank" rel="noreferrer">hlachhab230-ai</a>
+        </p>
+      </div>
+
+      <div class="mini">
+        <h3>Infos</h3>
+        <p>
+          Date de naissance : <span class="mono">18/08/2005</span><br/>
+          Lieu de naissance : <span class="mono">Casablanca</span>
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- PROFIL -->
+  <section id="profil" class="reveal">
+    <div class="section-title">
+      <h2>Profil professionnel</h2>
+      <span>Clair & orienté recruteur</span>
+    </div>
+
+    <div class="grid">
+      <div class="card item">
+        <h3>Ce que je recherche</h3>
+        <div class="meta">
+          <strong>Stage</strong> en Big Data / Développement / Intelligence Artificielle.
+          Je veux contribuer à des projets concrets : data, automatisation, dashboards, backend, produits digitaux.
+        </div>
+        <div class="tagrow">
+          <span class="tag c">Stage</span>
+          <span class="tag p">Big Data</span>
+          <span class="tag a">IA</span>
+          <span class="tag">Développement</span>
+        </div>
+      </div>
+
+      <div class="card item">
+        <h3>Ce que j’apporte</h3>
+        <ul>
+          <li><strong>Rigueur</strong> + discipline (lycée militaire) → exécution propre.</li>
+          <li><strong>Compétences tech</strong> → Python/Java/C, web, MySQL.</li>
+          <li><strong>Leadership</strong> → coordination, communication, organisation.</li>
+          <li><strong>Esprit business</strong> → Smart & Clear Pressing (digital & opérations).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projets" class="reveal">
+    <div class="section-title">
+      <h2>Projets</h2>
+      <span>Sites & projets académiques</span>
+    </div>
+
+    <div class="grid">
+      <div class="card project">
+        <div class="top">
+          <div>
+            <h3>Portfolio Adam (Architecture)</h3>
+            <div class="meta">Site web portfolio responsive (HTML/CSS), structure claire et sections complètes.</div>
+          </div>
+          <span class="tag c">GitHub Pages</span>
+        </div>
+        <div class="tagrow">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag p">UI premium</span><span class="tag">Responsive</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://hlachhab230-ai.github.io/portfolio-adam/" target="_blank" rel="noreferrer">Ouvrir</a>
+        </div>
+      </div>
+
+      <div class="card project">
+        <div class="top">
+          <div>
+            <h3>Portfolio Basma</h3>
+            <div class="meta">Portfolio académique hébergé sur GitHub Pages.</div>
+          </div>
+          <span class="tag c">Web</span>
+        </div>
+        <div class="tagrow">
+          <span class="tag">GitHub Pages</span><span class="tag">HTML/CSS</span><span class="tag p">Portfolio</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://hlachhab230-ai.github.io/portfolio-basma/" target="_blank" rel="noreferrer">Ouvrir</a>
+        </div>
+      </div>
+
+      <div class="card project">
+        <div class="top">
+          <div>
+            <h3>Smart & Clear Pressing</h3>
+            <div class="meta">Site vitrine business : présence digitale, contenu, branding.</div>
+          </div>
+          <span class="tag a">Entrepreneuriat</span>
+        </div>
+        <div class="tagrow">
+          <span class="tag">Business</span><span class="tag">Digital</span><span class="tag p">Branding</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://www.smartclearpressing.com" target="_blank" rel="noreferrer">Ouvrir</a>
+        </div>
+      </div>
+
+      <div class="card project">
+        <div class="top">
+          <div>
+            <h3>Application Médicale (Projet académique)</h3>
+            <div class="meta">Java + MySQL : conception BD relationnelle, connexion, backend.</div>
+          </div>
+          <span class="tag p">Académique</span>
+        </div>
+        <div class="tagrow">
+          <span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Backend</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="section-title">
+      <h2>Expérience</h2>
+      <span>Terrain + responsabilité</span>
+    </div>
+
+    <div class="card item">
+      <h3>Gérant & Responsable Digital — Smart & Clear Pressing</h3>
+      <div class="meta"><strong>2023 – Présent</strong> • Gestion business + digital</div>
+      <ul>
+        <li>Gestion complète des opérations, supervision et organisation des services.</li>
+        <li>Gestion financière et encaissement.</li>
+        <li>Développement et gestion du site web.</li>
+        <li>Communication digitale et réseaux sociaux.</li>
+      </ul>
+    </div>
+
+    <div class="card item">
+      <h3>Caissier — Quartier Générale</h3>
+      <div class="meta"><strong>2024 – 2025</strong> • Relation client & flux financiers</div>
+      <ul>
+        <li>Encaissement des paiements, contrôle des flux.</li>
+        <li>Service et relation client.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FORMATION -->
+  <section id="formation" class="reveal">
+    <div class="section-title">
+      <h2>Formation</h2>
+      <span>Parcours</span>
+    </div>
+
+    <div class="timeline">
+      <div class="t-item card">
+        <div class="t-date">3ᵉ année (UIR)</div>
+        <div>
+          <h3>Cycle Ingénieur Informatique — Big Data & Intelligence Artificielle</h3>
+          <div class="meta">Université Internationale de Rabat (UIR)</div>
+        </div>
+      </div>
+
+      <div class="t-item card">
+        <div class="t-date">2021 – 2023</div>
+        <div>
+          <h3>Baccalauréat — Lycée Militaire (Sciences Math B)</h3>
+          <div class="meta">Discipline, rigueur, sens des responsabilités</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section id="competences" class="reveal">
+    <div class="section-title">
+      <h2>Compétences</h2>
+      <span>Tech + outils</span>
+    </div>
+
+    <div class="grid">
+      <div class="card item">
+        <h3>Compétences techniques</h3>
+        <div class="skills">
+          <span class="pill">Python</span>
+          <span class="pill">Java</span>
+          <span class="pill">C</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">Canva</span>
+        </div>
+        <div class="tagrow">
+          <span class="tag c">Programmation</span>
+          <span class="tag p">Base de données</span>
+          <span class="tag a">Web</span>
+        </div>
+      </div>
+
+      <div class="card item">
+        <h3>Langues</h3>
+        <div class="meta">Barres animées (CECRL).</div>
+
+        <div class="lang" id="langBars">
+          <div class="row">
+            <div class="label">Darija (maternelle)</div>
+            <div class="bar"><div class="fill" data-w="100"></div></div>
+            <div class="lvl">Native</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Arabe (maternelle)</div>
+            <div class="bar"><div class="fill" data-w="100"></div></div>
+            <div class="lvl">Native</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Français (C1)</div>
+            <div class="bar"><div class="fill" data-w="80"></div></div>
+            <div class="lvl">C1</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Anglais (B2)</div>
+            <div class="bar"><div class="fill" data-w="65"></div></div>
+            <div class="lvl">B2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div class="card item">
+        <h3>Qualités (claires)</h3>
+        <ul>
+          <li>Orienté résultats • Esprit analytique • Autonomie</li>
+          <li>Discipline & rigueur (lycée militaire)</li>
+          <li>Organisation, gestion du temps, persévérance</li>
+          <li>Leadership, communication, travail en équipe</li>
+        </ul>
+      </div>
+
+      <div class="card item">
+        <h3>Centres d’intérêt</h3>
+        <ul>
+          <li>Sports stratégiques et de combat : football américain, jiu-jitsu, basketball, rugby</li>
+          <li>Technologies & IA : veille et apprentissage continu</li>
+          <li>Entrepreneuriat & gestion de projets</li>
+          <li>Jeux stratégiques • Pêche & pilotage de bateau</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership" class="reveal">
+    <div class="section-title">
+      <h2>Leadership & Engagement</h2>
+      <span>Responsabilités + impact</span>
+    </div>
+
+    <div class="grid">
+      <div class="card item">
+        <h3>Responsabilités</h3>
+        <ul>
+          <li><strong>Vice-Président — UIR Elite</strong> : coordination, organisation, suivi.</li>
+          <li><strong>VP & Responsable Média — Bureau des Sports</strong> : communication, supports, couverture.</li>
+          <li><strong>Assistant Coach — Football Américain</strong> : encadrement, analyse, stratégie.</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag a">Leadership</span>
+          <span class="tag p">Organisation</span>
+          <span class="tag c">Communication</span>
+        </div>
+      </div>
+
+      <div class="card item">
+        <h3>Événements & Volontariat</h3>
+        <ul>
+          <li>Volunteer — <strong>Special Olympics 2025 (Rabat)</strong> : logistique & coordination terrain.</li>
+          <li>Volunteer — <strong>TEDx UIR 2026</strong> : organisation & gestion des intervenants.</li>
+          <li><strong>Caravane Humanitaire & Médicale — Gercif</strong> : logistique & coordination bénévoles.</li>
+          <li>Organisation : soirées étudiantes + table ronde académique.</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag c">Volontariat</span>
+          <span class="tag a">Impact</span>
+          <span class="tag p">Coordination</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card item">
+      <h3>Distinctions sportives</h3>
+      <ul>
+        <li><strong>2× Meilleur joueur</strong> — Football Américain</li>
+        <li>Joueur — Équipe universitaire de Rugby</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="section-title">
+      <h2>Contact</h2>
+      <span>On parle ?</span>
+    </div>
+
+    <div class="grid">
+      <div class="card item">
+        <h3>Coordonnées</h3>
+        <ul>
+          <li>📍 Casablanca / Rabat</li>
+          <li>📞 <span class="mono">0684063402</span></li>
+          <li>✉️ <span class="mono">hlachhab230@gmail.com</span></li>
+          <li>🌐 <a class="mono" href="https://www.smartclearpressing.com" target="_blank" rel="noreferrer">smartclearpressing.com</a></li>
+        </ul>
+
+        <div class="cta">
+          <a class="btn primary" href="mailto:hlachhab230@gmail.com?subject=Stage%20-%20Contact%20Portfolio%20Hamza">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/hamza-lachhab-8a502038b" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="https://www.instagram.com/h4mz4_z/" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="btn ghost" href="https://github.com/hlachhab230-ai" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card item">
+        <h3>Message rapide (sans backend)</h3>
+        <div class="meta">Ce bouton ouvre ton application mail avec un message pré-rempli.</div>
+
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+          <input id="name" placeholder="Ton nom" style="width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);outline:none"/>
+          <input id="subject" placeholder="Sujet" style="width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);outline:none"/>
+          <textarea id="message" placeholder="Ton message..." style="width:100%;min-height:120px;resize:vertical;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);outline:none"></textarea>
+          <button class="btn primary" id="mailtoBtn">Envoyer par email</button>
+          <div id="mailHint" class="meta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    HL — Tous droits réservés 2026
+  </footer>
+
+</main>
+
+<script>
+  // ===== Scroll reveal
+  const reveals = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add("show");
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  reveals.forEach(el => io.observe(el));
+
+  // ===== Animated language bars once visible
+  const langBars = document.getElementById("langBars");
+  if(langBars){
+    const langIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          langBars.querySelectorAll(".fill").forEach(f => {
+            const w = f.getAttribute("data-w") || "0";
+            f.style.width = w + "%";
+          });
+          langIO.unobserve(langBars);
+        }
+      });
+    }, {threshold: 0.35});
+    langIO.observe(langBars);
+  }
+
+  // ===== Active nav while scrolling
+  const navLinks = [...document.querySelectorAll("#navLinks a")];
+  const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+  const navIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navLinks.forEach(a=>a.classList.remove("active"));
+        const id = "#" + entry.target.id;
+        const active = navLinks.find(a => a.getAttribute("href") === id);
+        if(active) active.classList.add("active");
+      }
+    });
+  }, {threshold: 0.38});
+
+  sections.forEach(s => navIO.observe(s));
+
+  // ===== Mailto form
+  const email = "hlachhab230@gmail.com";
+  const mailBtn = document.getElementById("mailtoBtn");
+  if(mailBtn){
+    mailBtn.addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const subject = document.getElementById("subject").value.trim() || "Contact via Portfolio";
+      const msg = document.getElementById("message").value.trim();
+
+      const full = [
+        name ? `Nom: ${name}` : "",
+        msg ? `Message:\n${msg}` : ""
+      ].filter(Boolean).join("\n\n");
+
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(full || "Bonjour,")}`;
+      document.getElementById("mailHint").textContent = "Si rien ne s’ouvre, configure une app mail par défaut sur ton PC.";
+    });
+  }
+</script>
+
+</body>
+</html>
